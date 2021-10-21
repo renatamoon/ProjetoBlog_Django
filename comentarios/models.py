@@ -6,12 +6,12 @@ from django.utils import timezone
 # Create your models here.
 
 class Comentario(models.Model):
-    nome_comentario = models.CharField(max_length=150)
-    email_comentario = models.EmailField()
-    comentario = models.TextField()
+    nome_comentario = models.CharField(max_length=150, verbose_name='Nome')
+    email_comentario = models.EmailField(verbose_name='Seu e-mail')
+    comentario = models.TextField(verbose_name='Deixe seu comentário aqui')
     post_comentario = models.ForeignKey(Post, on_delete=models.CASCADE) #caso o comentario seja excluido
     #fazer a exclusão de todo o comentario
-    usuario_comentario = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    usuario_comentario = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
     data_comentario = models.DateTimeField(default=timezone.now)
     publicado_comentario = models.BooleanField(default=False)
 
